@@ -5,7 +5,7 @@ const Resource = require('./model')
 
 const router = express.Router()
 
-router.get('/api/resources', (req, res, next) => {
+router.get('/', (req, res, next) => {
     Resource.getResources()
     .then(resource => {
       res.json(resource)

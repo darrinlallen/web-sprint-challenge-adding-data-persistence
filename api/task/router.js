@@ -6,7 +6,7 @@ const Task = require('./model')
 
 const router = express.Router()
 
-router.get('/api/tasks', (req, res, next) => {
+router.get('/', (req, res, next) => {
     Task.getTasks()
     .then(task => {
       res.json(task)
