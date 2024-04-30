@@ -14,14 +14,15 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-
-
-router.post('/api/tasks', (req, res, next) => {
-  User.add(req.body)
-    .then(newTask => {
+router.post('/', (req, res, next) => {
+  Task.create(req.body)
+    .then(newTask=> {
       res.status(201).json(newTask)
     })
     .catch(next)
 })
+
+
+
 
 module.exports = router

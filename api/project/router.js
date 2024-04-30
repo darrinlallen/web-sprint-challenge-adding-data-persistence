@@ -4,20 +4,21 @@ const Project = require('./model')
 const router = require('express').Router()
 
 
-router.get('/', async (req, res) => {
-    
-  try {
-    const prj = await Project.getProjects()
-        console.log(prj)
-        res.status(200).json(prj);
-    
-  }
-  catch(err) {
-    console.log(err)
-  }  
+router.get('/', (req, res, next) => {
+  Project.getProjects()
+  .then(prj=> {
+    res.json(prj)
+  })
+  .catch(next)
 })
 
-
+router.post('/', (req, res, next) => {
+  Project.create(req.body)
+    .then(newProject => {
+      res.status(201).json(newProject)
+    })
+    .catch(next)
+})
 
 
 module.exports = router

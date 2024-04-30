@@ -15,8 +15,8 @@ router.get('/', (req, res, next) => {
 
 
 
-router.post('/api/resources', (req, res, next) => {
-  User.add(req.body)
+router.post('/', (req, res, next) => {
+  Resource.create(req.body)
     .then(newResource => {
       res.status(201).json(newResource)
     })
