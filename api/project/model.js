@@ -5,12 +5,12 @@ const getProjects = () =>  {
   return db('projects');
 }
 
-async function create(pr) {
-  const [project_id] = await db('projects').insert(pr);
-  return getProjects().where({ project_id }).first();
+const  createProj = async (pr) => {
+  const [project_id] =  await db('projects').insert(pr);
+  return getProjects.where({project_id}).first();
 }
 
 module.exports = {
     getProjects,
-    create
-};
+    createProj
+}

@@ -6,7 +6,7 @@ const Task = require('./model')
 
 const router = express.Router()
 
-router.get('/', (req, res, next) => {
+router.get('/api/tasks', (req, res, next) => {
     Task.getTasks()
     .then(task => {
       res.json(task)
@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/', (req, res, next) => {
+router.post('/api/tasks', (req, res, next) => {
   Task.create(req.body)
     .then(newTask=> {
       res.status(201).json(newTask)

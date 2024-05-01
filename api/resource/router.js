@@ -5,7 +5,7 @@ const Resource = require('./model')
 
 const router = express.Router()
 
-router.get('/', (req, res, next) => {
+router.get('/api/resources', (req, res, next) => {
     Resource.getResources()
     .then(resource => {
       res.json(resource)
@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 
 
 
-router.post('/', (req, res, next) => {
+router.post('/api/resources', (req, res, next) => {
   Resource.create(req.body)
     .then(newResource => {
       res.status(201).json(newResource)
