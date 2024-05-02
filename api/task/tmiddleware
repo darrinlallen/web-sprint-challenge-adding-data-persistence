@@ -1,0 +1,16 @@
+const Ship = require('./model')
+
+module.exports = {
+  
+  checkStuff,
+}
+
+
+function checkStuff(req, res, next) {
+  const { id, desc, notes, comp, pid } = req.body
+  if (desc) {
+    next()
+  } else {
+    next({ status: 404, message: 'desc are required' })
+  }
+}

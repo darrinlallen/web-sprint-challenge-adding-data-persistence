@@ -2,6 +2,7 @@
 // build your `/api/projects` router here
 const express = require('express')
 const Task = require('./model')
+const { checkStuff } = require('./tmiddleware')
 
 
 const router = express.Router()
@@ -14,15 +15,13 @@ router.get('/api/tasks', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/api/tasks', (req, res, next) => {
-  Task.create(req.body)
-    .then(newTask=> {
-      res.status(201).json(newTask)
+/*router.post('/api/tasks', (req, res, next) => {
+  Task.createTask(req.body)
+    .then(newTsk => {
+      res.json(newTsk)
     })
     .catch(next)
 })
-
-
-
+*/
 
 module.exports = router

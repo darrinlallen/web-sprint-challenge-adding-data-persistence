@@ -1,0 +1,16 @@
+const Projecter = require('./model')
+
+module.exports = {
+  
+  checkName,
+}
+
+
+function checkName(req, res, next) {
+  const { id, name, desc, comp } = req.body
+  if (name) {
+    next()
+  } else {
+    next({ status: 404, message: 'name are required' })
+  }
+}

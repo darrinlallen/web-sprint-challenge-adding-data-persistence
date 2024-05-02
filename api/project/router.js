@@ -1,5 +1,6 @@
 // build your `/api/projects` router here
 const Project = require('./model')
+const { checkName } = require('./pmiddleware')
 
 const router = require('express').Router()
 
@@ -12,10 +13,10 @@ router.get('/api/projects', (req, res, next) => {
   .catch(next)
 })
 
-router.post('/api/projects', (req, res, next) => {
-  Project.create(req.body)
+router.post('/api/projects', checkName, (req, res, next) => {
+  Project.createProj(req.body)
     .then(newProject => {
-      res.status(201).json(newProject)
+      res.json(newProject)
     })
     .catch(next)
 })

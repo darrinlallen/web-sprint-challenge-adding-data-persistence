@@ -13,4 +13,10 @@ server.use("/", resourceRouter)
 server.use("/", taskRouter)
 
 
-module.exports = server
+server.use((err, req, res, next) => { // eslint-disable-line
+  res.status(500).json({
+    message: err.message
+  });
+});
+
+module.exports = server;
