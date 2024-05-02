@@ -9,8 +9,8 @@ function getTasks() {
 
 
  const  createTask = async (tsk) => {
-  return [task_id]=  await db('tasks').insert(tsk);
-  
+  const [task_id]=  await db('tasks').insert(tsk);
+  return getTasks()
 }
 
  

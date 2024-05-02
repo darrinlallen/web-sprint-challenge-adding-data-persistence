@@ -1,4 +1,6 @@
 // build your `Project` model here
+
+const { json } = require('express');
 const db = require('../../data/dbConfig.js');
 
 const getProjects = () =>  {
@@ -6,8 +8,8 @@ const getProjects = () =>  {
 }
 
 const  createProj = async (pr) => {
-  const [project_id] =  await db('projects').insert(pr);
-  return getProjects().where("project_id", project_id).first();
+const  [project_id] =  await db('projects').insert(pr);
+return getProjects()
 }
 
 module.exports = {
