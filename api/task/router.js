@@ -18,10 +18,9 @@ router.get('/api/tasks', (req, res, next) => {
 /*router.post('/api/tasks', (req, res, next) => {
   Task.createTask(req.body)
     .then(newTsk => {
-      res.json(newTsk)
+      res.status(201).json(newTsk)
     })
     .catch(next)
 })
 */
-
 module.exports = router

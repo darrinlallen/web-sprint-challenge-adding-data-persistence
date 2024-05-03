@@ -4,9 +4,9 @@ exports.up = function (knex) {
   return knex.schema
     .createTable('projects', tbl => {
       tbl.increments('project_id');
-      tbl.string('project_name', 128).notNullable
+      tbl.string('project_name', 128).required
       tbl.string('project_description', 128);
-      tbl.string('project_completed').defaultTo('false');
+      tbl.boolean('project_completed').defaultTo(0);
     })
     // we can chain together createTable
     .createTable('resources', tbl => {
