@@ -14,3 +14,11 @@ function checkName(req, res, next) {
     next({ status: 404, message: 'name are required' })
   }
 }
+function checkEvery(req, res, next) {
+  const { id, name, desc, comp } = req.body
+  if (name &&desc&& comp) {
+    next()
+  } else {
+    next({ status: 404, message: 'name are required' })
+  }
+}

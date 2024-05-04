@@ -8,9 +8,9 @@ function getTasks() {
 }
 
 
- const  createTask = async (tsk) => {
-  const [task_id]=  await db('tasks').insert(tsk);
-  return getTasks()
+ async function createTask(tsk) {
+  const [task_id] =  await db('tasks').insert(tsk);
+  return getTasks().where({task_id})
 }
 
  

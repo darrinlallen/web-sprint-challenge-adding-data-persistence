@@ -1,26 +1,41 @@
 // build your `Project` model here
 
-const { json } = require('express');
 const db = require('../../data/dbConfig.js');
-const knex = require('knex');
 
-const getProjects = () => {
+function getProjects() {
   return db.select(
-    'project_name', 
-    'project_description', 
-    db.raw('CASE WHEN project_completed = 1 THEN true ELSE false END')
+    db.raw(`CASE 
+      WHEN project_completed IS NULL THEN false 
+      WHEN project_completed = 0 THEN false 
+      WHEN project_completed = 1 THEN true 
+    END AS 'project_completed'`),
+    'project_description',
+    'project_name'
   )
-  .from('projects');
+  .from('projects')
+  .then(projects => {
+    // Convert null values to false
+    return projects.map(project => ({
+      ...project,
+      project_completed: project.project_completed === 1 ? true : false
+    }));
+  });
 }
 
 
-const createProj = async (pr) => {
-  const proj_id = await db('projects').insert({pr}); // Insert the project into the database and retrieve the project ID
-  return getProjects().where({ id: proj_id }).first(); // Retrieve the newly created project using its ID
+
+
+function getProjects2(){
+  return db('projects');
+}
+async function createProj(pr) {
+  const [project_id] = await db('projects').insert({pr}); // Insert the project into the database and retrieve the project ID
+return getProjects()// Retrieve the newly created project using its ID
 }
 
 
 module.exports = {
     getProjects,
-    createProj
+    createProj,
+    getProjects2
 }

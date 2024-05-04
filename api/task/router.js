@@ -7,7 +7,7 @@ const { checkStuff } = require('./tmiddleware')
 
 const router = express.Router()
 
-router.get('/api/tasks', (req, res, next) => {
+router.get('/api/tasks',(req, res, next) => {
     Task.getTasks()
     .then(task => {
       res.json(task)
@@ -15,12 +15,13 @@ router.get('/api/tasks', (req, res, next) => {
     .catch(next)
 })
 
-/*router.post('/api/tasks', (req, res, next) => {
+
+router.post('/api/tasks', checkStuff, (req, res, next) => {
   Task.createTask(req.body)
     .then(newTsk => {
-      res.status(201).json(newTsk)
+      res.json(newTsk)
     })
     .catch(next)
 })
-*/
+
 module.exports = router
