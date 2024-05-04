@@ -12,10 +12,10 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/api/projects', checkName, async (req, res, next) => {
+router.post('/',  async (req, res, next) => {
   try {
     const newP = await Project.createProj(req.body);
-    res.status(201).json(newP);
+    res.json(newP);
   } catch (err) {
     next(err);
   }

@@ -22,7 +22,7 @@ function getProjects() {
 async function createProj(proj) {
   const [project_id] = await db('projects')
     .insert(proj);
-  const createdProject = await getProjects().where({ project_id }).first();
+  const createdProject = await getProjects().where(project_id).first();
   return createdProject;
 }
 
