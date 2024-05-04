@@ -3,8 +3,14 @@ const db = require('../../data/dbConfig.js');
 
 function getTasks() {
   return  db('tasks').join('projects', 'projects.project_id', 'tasks.project_id')
-  .select('projects.project_name','projects.project_description', 'tasks.task_notes', 'tasks.task_description', 'tasks.task_completed');
-
+  .select('projects.project_name','projects.project_description', 'tasks.task_notes', 'tasks.task_description', 'tasks.task_completed')
+  .then(projects => {
+    // Convert null values to false
+    return projects.map(project => ({
+      ...project,
+      task_completed: project.task_completed === 1 ? true : false
+    }));
+  });
 }
 
 
