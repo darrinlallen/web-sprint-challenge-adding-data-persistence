@@ -8,10 +8,12 @@ const server = express()
 
 server.use(express.json())
 
-server.use("/api/projects", projectRouter)
+server.use("/", projectRouter)
 server.use("/", resourceRouter)
 server.use("/", taskRouter)
 
-
+server.get("/", (req, res) => {
+    res.status(200).json({ api: "up" })
+  })
   
 module.exports = server;

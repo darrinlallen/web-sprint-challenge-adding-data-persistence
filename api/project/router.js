@@ -3,7 +3,7 @@ const router = express.Router();
 const Project = require('./model');
 const { checkName } = require('./pmiddleware');
 
-router.get('/', async (req, res, next) => {
+router.get('/api/projects', async (req, res, next) => {
   try {
     const prj = await Project.getProjects();
     res.json(prj);
@@ -12,10 +12,10 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/',  async (req, res, next) => {
+router.post('/api/projects',  async (req, res, next) => {
   try {
     const newP = await Project.createProj(req.body);
-    res.json(newP);
+    res.status(201).json(newP);
   } catch (err) {
     next(err);
   }
