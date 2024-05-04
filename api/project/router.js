@@ -3,7 +3,7 @@ const router = express.Router();
 const Project = require('./model');
 const { checkName } = require('./pmiddleware');
 
-router.get('/api/projects', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const prj = await Project.getProjects();
     res.json(prj);

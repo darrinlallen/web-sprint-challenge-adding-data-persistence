@@ -8,7 +8,7 @@ const server = express()
 
 server.use(express.json())
 
-server.use("/", projectRouter)
+server.use("/api/projects", projectRouter)
 server.use("/", resourceRouter)
 server.use("/", taskRouter)
 

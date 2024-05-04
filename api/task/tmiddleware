@@ -8,7 +8,7 @@ module.exports = {
 
 function checkStuff(req, res, next) {
   const { id, desc, notes, comp, pid } = req.body
-  if (desc) {
+  if (desc && id) {
     next()
   } else {
     next({ status: 404, message: 'desc are required' })
